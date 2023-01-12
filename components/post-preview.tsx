@@ -11,6 +11,7 @@ type Props = {
   excerpt: string
   author: Author
   slug: string
+    isPremium: string
 }
 
 const PostPreview = ({
@@ -20,12 +21,19 @@ const PostPreview = ({
   excerpt,
   author,
   slug,
+    isPremium,
 }: Props) => {
   return (
     <div>
       <div className="mb-5">
         <CoverImage slug={slug} title={title} src={coverImage} />
       </div>
+        {isPremium === 'true' && (
+            <div className="p-2">
+                <span
+                    className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Premium</span>
+            </div>
+        )}
       <h3 className="text-3xl mb-3 leading-snug">
         <Link as={`/posts/${slug}`} href="/posts/[slug]">
           <a className="hover:underline">{title}</a>

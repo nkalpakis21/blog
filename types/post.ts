@@ -10,6 +10,7 @@ type PostType = {
   ogImage: {
     url: string
   }
+  isPremium: string
   content: string
 }
 
