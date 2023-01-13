@@ -11,7 +11,6 @@ import Head from 'next/head'
 import {CMS_NAME} from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import PostType from '../../types/post'
-import {useState} from "react";
 import Login from "../../components/login";
 import {useCookies} from "react-cookie";
 
@@ -22,8 +21,7 @@ type Props = {
 }
 
 const Post = ({post, morePosts, preview}: Props) => {
-    const [cookies, setCookie] = useCookies(['user']);
-    const [user, setUser] = useState<{ name: string } | null>(null);
+    const [cookies] = useCookies(['user']);
     const router = useRouter()
     if (!router.isFallback && !post?.slug) {
         return <ErrorPage statusCode={404}/>
