@@ -29,7 +29,7 @@ const Post = ({post, morePosts, preview}: Props) => {
         return <ErrorPage statusCode={404}/>
     }
 
-    if (!cookies.user) {
+    if (!cookies.user && post.isPremium) {
         return (<Login/>)
     }
 
