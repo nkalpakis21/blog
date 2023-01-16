@@ -1,14 +1,17 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useUser} from "../utils/useUser";
 import {User} from "../types/user";
 import CoreModal from "./modal";
 
-const Login = () => {
+type Props = {
+    canEscape: boolean
+}
+const Login = ({canEscape}: Props) => {
     const [open, setOpen] = useState(true)
     const user = useUser();
 
     return (
-        <CoreModal show={open}>
+        <CoreModal show={open} canEscape={canEscape}>
             <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="w-full max-w-md space-y-8">
                     <div>

@@ -1,15 +1,29 @@
-import {Fragment} from "react";
+import {Fragment, useEffect, useRef, useState} from "react";
 import {Dialog, Transition} from "@headlessui/react";
 
 type Props = {
     children: React.ReactNode
     show: boolean,
+    canEscape: boolean,
 }
-const CoreModal = ({children, show}: Props) => {
+const CoreModal = ({children, show, canEscape}: Props) => {
+    const [showModal, setShowModal] = useState(show);
+
+    const handleClose = () => {
+        if (canEscape) {
+            setShowModal(false);
+        }
+        return
+    }
+
+    useEffect(() => {
+        console.log(show);
+        setShowModal(show)
+    }, [show])
+
     return (
-        <Transition.Root show={show} as={Fragment}>
-            <Dialog as="div" className="relative z-10"  onClose={() => {
-            }}>
+        <Transition.Root show={showModal} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={handleClose}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
