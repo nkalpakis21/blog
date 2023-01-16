@@ -27,11 +27,6 @@ const Post = ({post, morePosts, preview}: Props) => {
         return <ErrorPage statusCode={404}/>
     }
 
-    if (!cookies.user && post.isPremium) {
-        return (<Login/>)
-    }
-
-
     return (
         <Layout preview={preview}>
             <Container>
@@ -47,6 +42,9 @@ const Post = ({post, morePosts, preview}: Props) => {
                                 </title>
                                 <meta property="og:image" content={post.ogImage.url}/>
                             </Head>
+                            {!cookies.user && post.isPremium && (
+                                <Login/>
+                            )}
                             <PostHeader
                                 title={post.title}
                                 coverImage={post.coverImage}
