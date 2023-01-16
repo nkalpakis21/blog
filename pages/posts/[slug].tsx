@@ -12,7 +12,7 @@ import {CMS_NAME} from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import PostType from '../../types/post'
 import Login from "../../components/login";
-import {useCookies} from "react-cookie";
+import {useUser} from "../../utils/useUser";
 
 type Props = {
     post: PostType
@@ -21,8 +21,8 @@ type Props = {
 }
 
 const Post = ({post, morePosts, preview}: Props) => {
-    const [cookies] = useCookies(['user']);
     const router = useRouter()
+    const user = useUser();
     if (!router.isFallback && !post?.slug) {
         return <ErrorPage statusCode={404}/>
     }
@@ -42,7 +42,7 @@ const Post = ({post, morePosts, preview}: Props) => {
                                 </title>
                                 <meta property="og:image" content={post.ogImage.url}/>
                             </Head>
-                            {!cookies.user && post.isPremium && (
+                            {!user.user && !user.isLoading && post.isPremium && (
                                 <Login/>
                             )}
                             <PostHeader
