@@ -4,7 +4,7 @@ import {Subscription} from "../types/subscription";
 
 type UserContextType = {
     user: User | null;
-    setUser: (user: User) => void;
+    setUser: (user: User | null) => void;
     isLoading: boolean;
 };
 

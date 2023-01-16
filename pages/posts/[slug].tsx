@@ -43,7 +43,7 @@ const Post = ({post, morePosts, preview}: Props) => {
                                 <meta property="og:image" content={post.ogImage.url}/>
                             </Head>
                             {!user.user && !user.isLoading && post.isPremium && (
-                                <Login/>
+                                <Login canEscape={false}/>
                             )}
                             <PostHeader
                                 title={post.title}
